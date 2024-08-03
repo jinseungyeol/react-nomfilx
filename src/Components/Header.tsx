@@ -55,10 +55,10 @@ const Circle = styled(motion.span)`
   height: 5px;
   border-radius: 5px;
   bottom: -5px;
-  left:0;
+  left: 0;
   right: 0;
   margin: 0 auto;
-  background-color: ${props => props.theme.red};
+  background-color: ${(props) => props.theme.red};
 `;
 
 const Search = styled.span`
@@ -93,24 +93,24 @@ const logoVariants = {
     // scale: [1, 1.5, 1.2, 0, 1],
     fillOpacity: [0, 1, 0],
     transition: {
-      repeat: Infinity
-    }
+      repeat: Infinity,
+    },
   },
-}
+};
 
 const navVariants = {
   top: {
-    backgroundColor: 'rgba(0,0,0,0)'
+    backgroundColor: "rgba(0,0,0,0)",
   },
   scroll: {
-    backgroundColor: 'rgba(0,0,0,1)'
-  }
-}
+    backgroundColor: "rgba(0,0,0,1)",
+  },
+};
 
 function Header() {
   const [searchOpen, setSearchOpen] = useState(false);
   const homeMatch = useRouteMatch("/");
-  const tvMatch = useRouteMatch("/tv");// /tv경로에 있어도 / 경로 안에 있는거라 둘다 참임
+  const tvMatch = useRouteMatch("/tv"); // /tv경로에 있어도 / 경로 안에 있는거라 둘다 참임
   const inputAnimation = useAnimation();
   const navAnimation = useAnimation();
   const { scrollY } = useScroll();
@@ -119,17 +119,16 @@ function Header() {
     if (searchOpen) {
       //trigger close
       inputAnimation.start({
-        scaleX: 0
-      })
-      
+        scaleX: 0,
+      });
     } else {
-      console.log(searchOpen)
+      console.log(searchOpen);
       // trigger open
       inputAnimation.start({
-        scaleX: 1
-      })
+        scaleX: 1,
+      });
     }
-    setSearchOpen(prev => !prev);
+    setSearchOpen((prev) => !prev);
   };
 
   useEffect(() => {
@@ -140,11 +139,10 @@ function Header() {
         navAnimation.start("top");
       }
     });
-  }, [scrollY])
-  
-  
+  }, [scrollY]);
+
   return (
-    <Nav variants={navVariants} animate={navAnimation} initial={"up"}>
+    <Nav variants={navVariants} animate={navAnimation} initial={"top"}>
       <Col>
         <Logo
           variants={logoVariants}
@@ -159,10 +157,12 @@ function Header() {
         </Logo>
         <Items>
           <Link to="/">
-            <Item>Home {homeMatch?.isExact && <Circle layoutId="circle"/>}</Item>
+            <Item>
+              Home {homeMatch?.isExact && <Circle layoutId="circle" />}
+            </Item>
           </Link>
           <Link to="/tv">
-            <Item>Tv Shows {tvMatch && <Circle layoutId="circle"/>}</Item>
+            <Item>Tv Shows {tvMatch && <Circle layoutId="circle" />}</Item>
           </Link>
         </Items>
       </Col>
@@ -171,7 +171,7 @@ function Header() {
           <motion.svg
             onClick={toggleSearch}
             animate={{ x: searchOpen ? -170 : 20 }}
-            transition={{type: 'linear'}}
+            transition={{ type: "linear" }}
             fill="currentColor"
             viewBox="0 0 20 20"
             xmlns="http://www.w3.org/2000/svg"
@@ -182,7 +182,12 @@ function Header() {
               clipRule="evenodd"
             ></path>
           </motion.svg>
-          <Input animate={inputAnimation} initial={{scaleX: 0}} transition={{type: 'linear'}} placeholder="검색하세요"/>
+          <Input
+            animate={inputAnimation}
+            initial={{ scaleX: 0 }}
+            transition={{ type: "linear" }}
+            placeholder="검색하세요"
+          />
         </Search>
       </Col>
     </Nav>

@@ -63,9 +63,9 @@ table {
 body {
   font-weight: 300;
   font-family: 'Source Sans Pro', sans-serif;
-  color:black;
+  color:${(props) => props.theme.white.darker};
   line-height: 1.2;
-  
+  background: black;
 }
 a {
   text-decoration:none;
@@ -84,9 +84,9 @@ root.render(
       <RecoilRoot>
         <QueryClientProvider client={client}>
           <ThemeProvider theme={theme}>
-          <GlobalStyle />
-          <App />
-        </ThemeProvider>
+            <GlobalStyle />
+            <App />
+          </ThemeProvider>
         </QueryClientProvider>
       </RecoilRoot>
     </React.StrictMode>

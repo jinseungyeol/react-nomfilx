@@ -17,7 +17,8 @@ function App() {
         </Route>
         <Route path="/" exact>
           <Home />
-        </Route> {/* / 경로를 제일 마지막에 넣어야함 */}
+        </Route>{" "}
+        {/* / 경로를 제일 마지막에 넣어야함 */}
       </Switch>
     </>
   );
